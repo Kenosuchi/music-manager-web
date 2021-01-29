@@ -1,0 +1,83 @@
+<div>
+    <div class="container-fluid">
+        <table-song-directive></table-song-directive>
+        <div id="tableUtil">
+            <div class="search-input input-group col-md-4 float-left">
+                <input class="form-control border-right-0 border" type="search" placeholder="search" id="searchTable">
+                <span class="input-group-append">
+                  <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                        <i class="fa fa-search"></i>
+                  </button>
+                </span>
+            </div>
+            <button type="button" class="btn btn-danger float-right ml-2" ng-click="vm.deleteSong()" ng-disabled="vm.checkAnyDelete()">Delete Song</button>
+            <button type="button" class="btn btn-primary float-right" ng-click="vm.addNewSong()" data-toggle="modal" data-target="#ModalSong">Add New Song</button>
+        </div>
+
+        <table class='table table-bordered table-condensed table-striped table-hover mt-5'>
+            <thead class="thead-dark">
+                <tr>
+                    <th class="tdCoverCheckBox"><input id="checkBoxDeleteAll" type="checkbox" ng-model="vm.isCheckAll" ng-click="vm.onDeleteAll()" ng-hide="vm.checkValidSongList()"> </th>
+                    <th>STT</th>
+                    <th>Song Title</th>
+                    <th>Artist Name</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                    <th>Playtime</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="song in vm.songs" class="table-row">
+                    <td class="tdCoverCheckBox"><input class="checkBoxDeleteData" type="checkbox" ng-bind="song.status == 'DELETE'" ng-click="vm.changeSongStatus(song)"> </td>
+                    <th ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{vm.songs.indexOf(song) + 1}} </th>
+                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songTitle}} </td>
+                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songArtistName}} </td>
+                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songGenreName}} </td>
+                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songReleaseDate | date:'yyyy-MM-dd'}} </td>
+                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songPlayTime}} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="ModalSong" tabindex="-1" role="dialog" aria-labelledby="ModalSong" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle" ng-hide="vm.createMode">Change Song Data</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle" ng-hide="!vm.createMode">Add New Song</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <form ng-submit="vm.submitSong()" id="formSong">
+                            <div class="form-group">
+                                <label for="SongTitle">Song Title: </label>
+                                <input type="text" class="form-control" id="SongTitle" placeholder="Enter Song Title" ng-model="vm.songData.songTitle">
+                            </div>
+                            <div class="form-group">
+                                <label for="ArtistName">Artist Name: </label>
+                                <input type="text" class="form-control" id="ArtistName" placeholder="Enter Artist Name" ng-model="vm.songData.songArtistName">
+                            </div>
+                            <div class="form-group">
+                                <label for="GenreName">Genre Name: </label>
+                                <input type="text" class="form-control" id="GenreName" placeholder="Enter Genre Name" ng-model="vm.songData.songGenreName">
+                            </div>
+                            <div class="form-group">
+                                <label for="ReleaseDate">Release Date: </label>
+                                <input class="form-control" type="date" id="ReleaseDate" ng-model="vm.songData.songReleaseDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="PlayTime">PlayTime: </label>
+                                <input type="text" class="form-control" id="PlayTime" placeholder="Enter PlayTime" ng-model="vm.songData.songPlayTime">
+                            </div>
+                            <button id="submitSongModalForm" type="submit" class="btn btn-primary float-right">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

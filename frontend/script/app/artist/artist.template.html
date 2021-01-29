@@ -1,0 +1,18 @@
+<div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>STT</th>
+                <th>Artist Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="artist in vm.artists">
+                <th scope="row">1</th>
+                <td> {{artist.artistName}} </td>
+                <td> {{artist.artistDescription}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

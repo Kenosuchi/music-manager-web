@@ -1,0 +1,24 @@
+#formSong {
+    width: 80%;
+}
+
+.table-row {
+    cursor: pointer;
+}
+
+.tdCoverCheckBox {
+    cursor: default;
+    text-align: center;
+}
+
+#searchTable:focus {
+    box-shadow: none;
+}
+
+#tableUtil {
+    padding-bottom: 1px;
+}
+
+.search-input {
+    padding: 0;
+}

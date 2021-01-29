@@ -1,0 +1,19 @@
+#searchInput {
+    width: 80%;
+}
+
+#menu {
+    margin-top: 5px;
+}
+
+#brand {
+    text-align: center;
+}
+
+hr {
+    border-top: 2px solid gray;
+}
+
+#navbar {
+    background-color: lightgray;
+}

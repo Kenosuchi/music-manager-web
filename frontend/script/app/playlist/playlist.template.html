@@ -1,0 +1,21 @@
+<div>
+    <div ng-repeat="playlist in vm.playlists">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>STT</th>
+                    <th>Song Name</th>
+                    <th>Playtime</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="song in playlist.song">
+                    <th scope="row">1</th>
+                    <td> {{song.name}} </td>
+                    <td> {{song.playtime}} </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+</div>
