@@ -1,3 +1,5 @@
 /backend/.idea
 /backend/target
 /frontend/debug.log
+/frontend/node_modules
+/frontend/script/node_modules
