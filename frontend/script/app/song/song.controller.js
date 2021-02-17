@@ -8,6 +8,7 @@ function SongController(SongService) {
     vm.songData = defaultSongDataValues();
     vm.dataMode = onDataMode("");
     vm.isCheckAll = false;
+    vm.searchInput = "";
 
     vm.submitSong = submitSong;
     vm.clickTable = clickTable;
@@ -17,6 +18,19 @@ function SongController(SongService) {
     vm.checkAnyDelete = checkAnyDelete;
     vm.onDeleteAll = onDeleteAll;
     vm.checkValidSongList = checkValidSongList;
+    vm.searchSongs = searchSongs;
+
+    function searchSongs(title) {
+        SongService.getSongsByTitle(title).then(
+            function(res) {
+                vm.songs = SongService.parseData(res);
+                SongService.success("Success getting song data by title");
+            },
+            function(res) {
+                SongService.error("Fail to get song data by title");
+            }
+        )
+    }
 
     function checkValidSongList() {
         return vm.songs === undefined || vm.songs.length == 0

@@ -1,11 +1,11 @@
 <div>
     <div class="container-fluid">
-        <table-song-directive></table-song-directive>
+        <h1 style="color: black;">Song List</h1>
         <div id="tableUtil">
             <div class="search-input input-group col-md-4 float-left">
-                <input class="form-control border-right-0 border" type="search" placeholder="search" id="searchTable">
+                <input class="form-control border-right-0 border" type="search" placeholder="Search..." id="searchTable" ng-model="vm.searchInput">
                 <span class="input-group-append">
-                  <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                  <button class="btn btn-outline-secondary border-left-0 border" type="button" ng-click="vm.searchSongs(vm.searchInput)">
                         <i class="fa fa-search"></i>
                   </button>
                 </span>
@@ -43,8 +43,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle" ng-hide="vm.createMode">Change Song Data</h5>
-                    <h5 class="modal-title" id="exampleModalLongTitle" ng-hide="!vm.createMode">Add New Song</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle" ng-hide="vm.dataMode !== 2">Change Song Data</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle" ng-hide="vm.dataMode !== 1">Add New Song</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
