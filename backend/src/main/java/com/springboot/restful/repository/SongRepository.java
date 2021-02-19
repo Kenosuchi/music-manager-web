@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface SongRepository extends JpaRepository<Song,Integer> {
-    @Query(value = "select * from song where song.song_name = :name",nativeQuery = true)
-    List<Song> findSongByName(String name);
+    @Query(value = "select * from song where song.song_title like :title",nativeQuery = true)
+    List<Song> findSongByTitle(String title);
 }

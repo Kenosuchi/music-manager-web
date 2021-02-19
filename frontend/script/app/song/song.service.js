@@ -22,7 +22,7 @@ function SongService($http) {
     // ====================== INTERBAL==================
 
     function getSongsByTitle(title) {
-        return $http.put(API.urls + "title/" + title, title);
+        return $http.get(API.urls + "title/" + title);
     }
 
     function deleteMultipleSong(idArr) {

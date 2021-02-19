@@ -37,9 +37,10 @@ public class SongService {
         result.setData(songDTO);
         return result;
     }
-    public ServiceResult findSongByName(String name){
+    public ServiceResult findSongByTitle(String title){
         ServiceResult result = new ServiceResult();
-        List<Song> songs = songRepository.findSongByName(name);
+        title = "%"+title+"%";
+        List<Song> songs = songRepository.findSongByTitle(title);
         List<SongDTO> songDTOs = convertEntitiesToDTOS(songs);
         result.setData(songDTOs);
         return result;

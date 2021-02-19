@@ -20,14 +20,14 @@ public class SongController {
         return new ResponseEntity<ServiceResult>(songService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<ServiceResult> findById(@PathVariable int id) {
         return new ResponseEntity<ServiceResult>(songService.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/{title}")
-    public ResponseEntity<ServiceResult> findByName(@PathVariable(value = "title") String name) {
-        return new ResponseEntity<ServiceResult>(songService.findSongByName(name), HttpStatus.OK);
+    @GetMapping("/title/{title}")
+    public ResponseEntity<ServiceResult> findByTitle(@PathVariable(value = "title") String title) {
+        return new ResponseEntity<ServiceResult>(songService.findSongByTitle(title), HttpStatus.OK);
     }
 
     @PostMapping("/")
