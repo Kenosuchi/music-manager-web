@@ -1,21 +1,22 @@
 angular
     .module('ArtistModule')
-    .controller('ArtistController', ArtistController)
+    .controller('ArtistController', ArtistController);
 
-function ArtistController($http) {
-    var vm = this;
-    vm.artists = [];
-    getArtists();
+function ArtistController(ArtistService) {
+    vm = this;
+    vm.artists = getArtists();
 
     function getArtists() {
-        $http.get('/artists').then(
-            function(res) {
-                vm.artists = res.data.data;
-                console.log(vm.artists);
-            },
-            function(res) {
-                console.log("Cannot get artists")
-            }
-        )
+        ArtistService.getArtists().then(
+            _success,_error
+        );
+    }
+
+    function _success(res) {
+        vm.artists = ArtistService.parseData(res);
+        console.log(vm.artists);
+    }
+    function _error(res) {
+        console.log("Cannot get artists");
     }
 }

@@ -30,6 +30,11 @@ public class SongController {
         return new ResponseEntity<ServiceResult>(songService.findSongByTitle(title), HttpStatus.OK);
     }
 
+    @GetMapping("/order/{orderBy}")
+    public ResponseEntity<ServiceResult> orderBySongTitle(@PathVariable(value = "orderBy") boolean order) {
+        return new ResponseEntity<ServiceResult>(songService.orderBySongTitle(order), HttpStatus.OK);
+    }
+
     @PostMapping("/")
     public ResponseEntity<ServiceResult> create(@RequestBody SongDTO songDTO) {
         return new ResponseEntity<ServiceResult>(songService.create(songDTO), HttpStatus.OK);

@@ -11,4 +11,8 @@ import java.util.List;
 public interface SongRepository extends JpaRepository<Song,Integer> {
     @Query(value = "select * from song where song.song_title like :title",nativeQuery = true)
     List<Song> findSongByTitle(String title);
+    @Query(value="select * from song order by song.song_title ASC",nativeQuery = true)
+    List<Song> orderBySongTitleAsc();
+    @Query(value="select * from song order by song.song_title DESC",nativeQuery = true)
+    List<Song> orderBySongTitleDesc();
 }

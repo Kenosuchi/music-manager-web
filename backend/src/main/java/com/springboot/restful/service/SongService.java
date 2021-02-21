@@ -46,6 +46,19 @@ public class SongService {
         return result;
     }
 
+    public ServiceResult orderBySongTitle(boolean asc){
+        ServiceResult result = new ServiceResult();
+        List<Song> songs;
+        if(asc){
+            songs = songRepository.orderBySongTitleAsc();
+        }else{
+            songs = songRepository.orderBySongTitleDesc();
+        }
+        List<SongDTO> songDTOs = convertEntitiesToDTOS(songs);
+        result.setData(songDTOs);
+        return result;
+    }
+
     public ServiceResult  create(SongDTO songDTO){
         ServiceResult result = new ServiceResult();
         Song song = convertDTOtoEntities(songDTO);

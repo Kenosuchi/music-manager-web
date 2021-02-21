@@ -10,8 +10,10 @@
                   </button>
                 </span>
             </div>
+            
             <button type="button" class="btn btn-danger float-right ml-2" ng-click="vm.deleteSong()" ng-disabled="vm.checkAnyDelete()">Delete Song</button>
-            <button type="button" class="btn btn-primary float-right" ng-click="vm.addNewSong()" data-toggle="modal" data-target="#ModalSong">Add New Song</button>
+            <button type="button" class="btn btn-primary float-right ml-2" ng-click="vm.addNewSong()" data-toggle="modal" data-target="#ModalSong">Add New Song</button>
+            <button type="button" class="btn btn-info float-right ml-2" ng-click="vm.orderSongs(vm.currentOrder)">Order</button>
         </div>
 
         <table class='table table-bordered table-condensed table-striped table-hover mt-5'>

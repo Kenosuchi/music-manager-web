@@ -9,6 +9,7 @@ function SongController(SongService) {
     vm.dataMode = onDataMode("");
     vm.isCheckAll = false;
     vm.searchInput = "";
+    vm.currentOrder=true;
 
     vm.submitSong = submitSong;
     vm.clickTable = clickTable;
@@ -19,6 +20,19 @@ function SongController(SongService) {
     vm.onDeleteAll = onDeleteAll;
     vm.checkValidSongList = checkValidSongList;
     vm.searchSongs = searchSongs;
+    vm.orderSongs = orderSongs;
+
+    function orderSongs(currentOrder){
+        SongService.orderSongs(currentOrder).then(
+            function(result){
+                vm.songs = SongService.parseData(result);
+                vm.currentOrder = !vm.currentOrder;
+                SongService.success("Success reorder song data");
+            },function(error){
+                SongService.error("Fail to reoder song data");
+            }
+        )
+    }
 
     function searchSongs(title) {
         SongService.getSongsByTitle(title).then(

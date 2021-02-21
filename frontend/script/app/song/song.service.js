@@ -15,11 +15,16 @@ function SongService($http) {
         updateSong: updateSong,
         deleteSong: deleteSong,
         deleteMultipleSong: deleteMultipleSong,
+        orderSongs: orderSongs,
         success: success,
         error: error
     }
 
     // ====================== INTERBAL==================
+
+    function orderSongs(currentOrder){
+        return $http.get(API.urls+"order/"+currentOrder);
+    }
 
     function getSongsByTitle(title) {
         return $http.get(API.urls + "title/" + title);

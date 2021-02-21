@@ -9,9 +9,9 @@
         </thead>
         <tbody>
             <tr ng-repeat="artist in vm.artists">
-                <th scope="row">1</th>
-                <td> {{artist.artistName}} </td>
-                <td> {{artist.artistDescription}} </td>
+                <th scope="row">{{vm.artists.indexOf(artist) + 1}}</th>
+                <td> {{artist.data.artistName}} </td>
+                <td> {{artist.data.artistDescription}} </td>
             </tr>
         </tbody>
     </table>
