@@ -1,0 +1,19 @@
+<div>
+    <button ng-click="vm.backToListener()">Back</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Playlist Title</th>
+                <th>Playlist Update Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="playlist in vm.playlists" class="table-row">
+                <th scope="row" ng-click="vm.showSongs(playlist.data.playlistId)">{{vm.playlists.indexOf(playlist) + 1}}</th>
+                <td ng-click="vm.showSongs(playlist.data.playlistId)"> {{playlist.data.playlistTitle}} </td>
+                <td ng-click="vm.showSongs(playlist.data.playlistId)"> {{playlist.data.playlistUpdateDate| date:'yyyy-MM-dd'}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

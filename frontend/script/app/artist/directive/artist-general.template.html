@@ -1,0 +1,20 @@
+<div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>STT</th>
+                <th>Artist Name</th>
+                <th>Description</th>
+                <th>Number Of Followers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="artist in vm.artists" class="table-row">
+                <th scope="row" ng-click="vm.getSongs()">{{vm.artists.indexOf(artist) + 1}}</th>
+                <td ng-click="vm.getSongs(artist.data.artistId)"> {{artist.data.artistName}} </td>
+                <td ng-click="vm.getSongs(artist.data.artistId)"> {{artist.data.artistDescription}} </td>
+                <td ng-click="vm.getSongs(artist.data.artistId)"> {{artist.data.artistNumberOfFollowers}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

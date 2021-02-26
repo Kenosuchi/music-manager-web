@@ -22,3 +22,8 @@
 .search-input {
     padding: 0;
 }
+
+.modal {
+    top: 50px;
+    color: black;
+}

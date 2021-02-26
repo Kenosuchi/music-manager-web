@@ -1,0 +1,23 @@
+<div>
+    <button ng-click="vm.showArtist()">Back</button>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>STT</th>
+                <th>Song Title</th>
+                <th>Song Genre</th>
+                <th>Song PlayTime</th>
+                <th>Song Release Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="song in vm.songs">
+                <th scope="row">{{vm.songs.indexOf(song) + 1}}</th>
+                <td> {{song.data.songTitle}} </td>
+                <td> {{song.data.songGenreName}} </td>
+                <td> {{song.data.songPlayTime}} </td>
+                <td> {{song.data.songReleaseDate | date:'yyyy-MM-dd'}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

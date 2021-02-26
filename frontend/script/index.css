@@ -1,19 +1,83 @@
-#searchInput {
-    width: 80%;
-}
-
-#menu {
-    margin-top: 5px;
-}
-
 #brand {
-    text-align: center;
+    padding: 0px 2rem;
 }
 
-hr {
-    border-top: 2px solid gray;
+#brand:hover {
+    color: rgba(1, 1, 1, 0.5);
 }
 
-#navbar {
-    background-color: lightgray;
+.mm-navbar {
+    background-color: #563d7c;
+    min-height: 4rem;
+    z-index: 1071;
+}
+
+.btn-mm-acccount {
+    color: #ffe484;
+    border-color: #ffe484;
+    font-weight: 500;
+    margin-left: auto !important;
+}
+
+.btn-mm-acccount:hover {
+    background-color: #ffe484;
+}
+
+.mm-search {
+    padding: 0;
+}
+
+.mm-search-input:focus {
+    box-shadow: none;
+}
+
+.mm-search-btn,
+.mm-search-btn:hover {
+    background-color: white;
+}
+
+.mm-search-btn-img:hover,
+.mm-search-btn-img {
+    color: gray;
+}
+
+.mm-search-btn:active {
+    background-color: white !important;
+    box-shadow: none !important;
+}
+
+.mm-search-btn:focus {
+    box-shadow: none;
+}
+
+.mm-sidebar {
+    position: sticky;
+    order: 0;
+    top: 4rem;
+    height: calc(100vh - 4rem);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.mm-content {
+    order: 1;
+}
+
+.mm-rightbar {
+    order: 2;
+}
+
+.nav-link {
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+}
+
+.mm-navbar {
+    position: sticky;
+}
+
+@media (min-width: 768px) {
+    .mm-navbar {
+        position: sticky;
+        top: 0;
+    }
 }

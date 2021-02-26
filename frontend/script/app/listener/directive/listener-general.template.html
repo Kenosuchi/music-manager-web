@@ -1,0 +1,18 @@
+<div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>STT</th>
+                <th>Listener Name</th>
+                <th>Playlist</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="listener in vm.listeners">
+                <th scope="row">{{vm.listeners.indexOf(listener) + 1}}</th>
+                <td>{{listener.data.listenerName}} </td>
+                <td ng-click="vm.showPlaylist(listener.data.listenerId)" class="show-playlist">Playlist</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

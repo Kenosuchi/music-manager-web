@@ -5,7 +5,8 @@
         .module('MusicManagerApp', [
             "ngRoute",
             "SongModule",
-            "PlaylistModule",
-            "ArtistModule"
+            "ArtistModule",
+            "AlbumModule",
+            "ListenerModule",
         ]);
 })();

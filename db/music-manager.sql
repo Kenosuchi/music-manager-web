@@ -32,6 +32,14 @@ create table `music-manager`.listener(
     primary key (listener_id),
     foreign key (listener_account) references user_account(account_id)
 );
+create table `music-manager`.playlist(
+	playlist_id int not null auto_increment,
+    playlist_title varchar(100),
+    playlist_update_date date,
+    playlist_listener int,
+    primary key(playlist_id),
+    foreign key(playlist_listener) references listener(listener_id)
+);
 create table `music-manager`.song(
 	song_id int not null auto_increment,
     song_title varchar(100) not null,
@@ -50,10 +58,11 @@ create table `music-manager`.album(
     album_updated_date date,
     primary key (album_id)
 );
-create table `music-manager`.playlist(
-	listener_id int not null,
+
+create table `music-manager`.playlist_song(
+	playlist_id int not null,
     song_id int not null,
-    foreign key (listener_id) references listener(listener_id),
+    foreign key (playlist_id) references playlist(playlist_id),
     foreign key (song_id) references song(song_id)
 );
 create table `music-manager`.album_song(

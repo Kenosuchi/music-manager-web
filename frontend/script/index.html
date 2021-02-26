@@ -18,60 +18,69 @@
     <script src="./app/song/song.module.js"></script>
     <script src="./app/song/song.controller.js"></script>
     <script src="./app/song/song.service.js"></script>
-    <script src="./app/song/song.table-song-directive.js"></script>
 
-    <script src="./app/playlist/playlist.module.js"></script>
-    <script src="./app/playlist/playlist.controller.js"></script>
+    <script src="./app/listener/listener.module.js"></script>
+    <script src="./app/listener/listener.service.js"></script>
+    <script src="./app/listener/listener.controller.js"></script>
+    <script src="./app/listener/directive/listener-general.directive.js"></script>
+    <script src="./app/listener/directive/playlist-general.directive.js"></script>
+    <script src="./app/listener/directive/playlist-song.directive.js"></script>
+
 
     <script src="./app/artist/artist.module.js"></script>
     <script src="./app/artist/artist.service.js"></script>
     <script src="./app/artist/artist.controller.js"></script>
+    <script src="./app/artist/directive/artist-general.directive.js"></script>
+    <script src="./app/artist/directive/artist-song.directive.js"></script>
+
+    <script src="./app/album/album.module.js"></script>
+    <script src="./app/album/album.service.js"></script>
+    <script src="./app/album/album.controller.js"></script>
+    <script src="./app/album/directive/album-list.directive.js"></script>
+    <script src="./app/album/directive/album-song.directive.js"></script>
 
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="./app/song/song.css">
+    <link rel="stylesheet" href="./app/listener/listener.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body ng-app="MusicManagerApp">
-
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row mm-navbar">
+        <a id="brand" class="navbar-brand" href="#!">Music Manager</a>
+        <div class="mm_search input-group col-md-4">
+            <input class="form-control border-right-0 border mm-search-input" type="search" placeholder="Search...">
+            <span class="input-group-append">
+              <button class="btn btn-outline-secondary border-left-0 border mm-search-btn" type="button">
+                    <i class="fa fa-search mm-search-btn-img"></i>
+              </button>
+            </span>
+        </div>
+        <a class="btn btn-mm-acccount d-done d-lg-inline-block mb-md-0">Account</a>
+    </header>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2" id="menu">
-                <div class="column">
-                    <div class="d-flex justify-content-center">
-                        <a id="brand" class="navbar-brand" href="#!">Music Manager</a>
-                    </div>
-                    <hr>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!song">Song</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!playlist">Playlist</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!playlist">Album</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!artist">Artist</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="row flex-xl-nowrap">
+            <div class="col-12 col-md-3 col-xl-2 mm-sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#!song">Song</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#!listener">Listener</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#!album">Album</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#!artist">Artist</a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-10">
-                <nav id="navbar" class="navbar navbar-expand-lg navbar-dark sticky-top">
-                    <form class="form-inline" id="searchInput">
-                        <input class="form-control mr-sm-2 col-md-8" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-secondary" type="button">
-                            <i class="fa fa-search"></i>
-                          </button>
-                    </form>
-                    <button class="btn btn-outline-danger ml-auto" type="submit">Account</button>
-                </nav>
-                <br>
+
+            <main class="col-12 col-md-9 col-xl-10 py-md-3 mm-content">
                 <div ng-view></div>
-            </div>
+            </main>
         </div>
     </div>
 </body>

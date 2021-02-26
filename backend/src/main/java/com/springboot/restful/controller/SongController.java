@@ -1,7 +1,7 @@
 package com.springboot.restful.controller;
 
 import com.springboot.restful.dto.SongDTO;
-import com.springboot.restful.service.ServiceResult;
+import com.springboot.restful.utilities.ServiceResult;
 import com.springboot.restful.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +28,11 @@ public class SongController {
     @GetMapping("/title/{title}")
     public ResponseEntity<ServiceResult> findByTitle(@PathVariable(value = "title") String title) {
         return new ResponseEntity<ServiceResult>(songService.findSongByTitle(title), HttpStatus.OK);
+    }
+
+    @GetMapping("/artist/{id}")
+    public ResponseEntity<ServiceResult> findByArtist(@PathVariable(value = "id") int artistId) {
+        return new ResponseEntity<ServiceResult>(songService.findSongByArtist(artistId), HttpStatus.OK);
     }
 
     @GetMapping("/order/{orderBy}")

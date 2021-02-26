@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,17 +22,20 @@ public class Artist {
     @Column(name="artist_description")
     private String artistDescription;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "artist_account")
     private Account artistAccount;
+
+    @OneToMany(mappedBy = "songArtist")
+    private Set<Song> artistSongs;
+
+    @ManyToMany
+    @JoinTable(name = "listener_artist_interest",
+            joinColumns = @JoinColumn(name = "artist_interest_id"),
+            inverseJoinColumns = @JoinColumn(name = "listener_id"))
+    private Set<Listener> artistFollowed;
 
     public Artist() {
     }
 
-    public Artist(int artistId, String artistName, String artistDescription, Account artistAccount) {
-        this.artistId = artistId;
-        this.artistName = artistName;
-        this.artistDescription = artistDescription;
-        this.artistAccount = artistAccount;
-    }
 }

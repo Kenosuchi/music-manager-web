@@ -1,0 +1,21 @@
+<div>
+    <button ng-click="vm.backToAlbumList()">Back</button>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>STT</th>
+                <th>Title</th>
+                <th>Artist Name</th>
+                <th>Playtime</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="song in vm.selectedAlbumSongs">
+                <th scope="row">{{vm.selectedAlbumSongs.indexOf(song) + 1}}</th>
+                <td>{{song.data.songTitle}} </td>
+                <td>{{song.data.songArtistName}} </td>
+                <td>{{song.data.songPlayTime}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

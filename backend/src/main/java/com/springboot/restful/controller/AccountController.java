@@ -2,7 +2,7 @@ package com.springboot.restful.controller;
 
 import com.springboot.restful.entities.Account;
 import com.springboot.restful.service.AccountService;
-import com.springboot.restful.service.ServiceResult;
+import com.springboot.restful.utilities.ServiceResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

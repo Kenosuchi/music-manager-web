@@ -2,6 +2,7 @@ package com.springboot.restful.service;
 
 import com.springboot.restful.entities.Role;
 import com.springboot.restful.repository.RoleRepository;
+import com.springboot.restful.utilities.ServiceResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

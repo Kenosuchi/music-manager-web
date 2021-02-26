@@ -2,6 +2,7 @@ package com.springboot.restful.service;
 
 import com.springboot.restful.entities.Account;
 import com.springboot.restful.repository.AccountRepository;
+import com.springboot.restful.utilities.ServiceResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

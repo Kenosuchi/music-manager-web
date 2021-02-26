@@ -6,9 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
     public interface ArtistRepository extends JpaRepository<Artist,Integer> {
-    //@Query("select a from Artist a where a.artistName = :name")
     @Query(value = "select * from artist a where a.artist_name = :name",nativeQuery = true)
     Artist findArtistByName(@Param("name") String name);
 }

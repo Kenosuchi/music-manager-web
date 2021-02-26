@@ -1,0 +1,20 @@
+<div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>STT</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Latest Updated Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-row" ng-repeat="album in vm.albums">
+                <th scope="row" ng-click="vm.showAlbumSongs(album.data.albumId)">{{vm.albums.indexOf(album) + 1}}</th>
+                <td ng-click="vm.showAlbumSongs(album.data.albumId)"> {{album.data.albumTitle}} </td>
+                <td ng-click="vm.showAlbumSongs(album.data.albumId)"> {{album.data.albumDescription}} </td>
+                <td ng-click="vm.showAlbumSongs(album.data.albumId)"> {{album.data.albumUpdatedDate| date:'yyyy-MM-dd'}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

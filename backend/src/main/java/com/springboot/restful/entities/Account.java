@@ -25,4 +25,13 @@ public class Account {
     @JoinColumn(name = "account_role")
     private Role accountRole;
 
+    public Account() {
+    }
+
+    public Account(int accountId, String accountUsername, String accountPassword, Role accountRole) {
+        this.accountId = accountId;
+        this.accountUsername = accountUsername;
+        this.accountPassword = accountPassword;
+        this.accountRole = accountRole;
+    }
 }

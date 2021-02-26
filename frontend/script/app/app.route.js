@@ -9,14 +9,24 @@ function config($routeProvider) {
         controller: 'SongController',
         controllerAs: 'vm'
     }).
-    when('/playlist', {
-        templateUrl: 'app/playlist/playlist.template.html',
-        controller: 'PlaylistController',
+    when('/listener', {
+        templateUrl: 'app/listener/listener.template.html',
+        controller: 'ListenerController',
         controllerAs: 'vm'
     }).
     when('/artist', {
         templateUrl: 'app/artist/artist.template.html',
         controller: 'ArtistController',
+        controllerAs: 'vm'
+    }).
+    when('/album', {
+        templateUrl: 'app/album/album.template.html',
+        controller: 'AlbumController',
+        controllerAs: 'vm'
+    }).
+    when('/album-detail', {
+        templateUrl: 'app/album/album-detail.template.html',
+        controller: 'AlbumController',
         controllerAs: 'vm'
     }).
     otherwise({

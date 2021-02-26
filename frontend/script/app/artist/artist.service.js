@@ -1,18 +1,20 @@
 angular
     .module('ArtistModule')
-    .service('ArtistService',ArtistService);
+    .service('ArtistService', ArtistService);
 
-function ArtistService($http){
-    var API={
-        Url: '/artists/'
+function ArtistService($http) {
+    var API = {
+        Url: '/artists/',
+        UrlSong: '/songs/'
     };
     var service = {
         getArtists: getArtists,
+        getSongs: getSongs,
         parseData: parseData,
     }
 
     //==========Internal function==============
-    function parseData(res){
+    function parseData(res) {
         var result = [];
         for (data of res.data.data) {
             result.push({
@@ -21,7 +23,12 @@ function ArtistService($http){
         };
         return result;
     }
-    function getArtists(){
+
+    function getSongs(artistId) {
+        return $http.get(API.UrlSong + "artist/" + artistId)
+    }
+
+    function getArtists() {
         return $http.get(API.Url);
     }
 

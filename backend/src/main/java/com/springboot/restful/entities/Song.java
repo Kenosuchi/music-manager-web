@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,13 +26,19 @@ public class Song {
     @Column(name="song_playtime")
     private int songPlayTime;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "song_artist")
     private Artist songArtist;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn(name = "song_genre")
     private Genre songGenre;
+
+    @ManyToMany(cascade = CascadeType.DETACH)
+    @JoinTable(name="album_song",
+    joinColumns = @JoinColumn(name = "song_id"),
+    inverseJoinColumns = @JoinColumn(name="album_id"))
+    private Set<Album> albumSet;
 
     public Song() {
     }

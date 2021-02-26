@@ -1,18 +1,8 @@
 <div>
-    <table class="table">
-        <thead class="thead-light">
-            <tr>
-                <th>STT</th>
-                <th>Artist Name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="artist in vm.artists">
-                <th scope="row">{{vm.artists.indexOf(artist) + 1}}</th>
-                <td> {{artist.data.artistName}} </td>
-                <td> {{artist.data.artistDescription}} </td>
-            </tr>
-        </tbody>
-    </table>
+    <div ng-hide="!vm.show.artist">
+        <artist-general-directive></artist-general-directive>
+    </div>
+    <div ng-hide="!vm.show.song">
+        <artist-song-directive></artist-song-directive>
+    </div>
 </div>
