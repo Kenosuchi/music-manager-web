@@ -12,4 +12,5 @@ import java.util.List;
     public interface ArtistRepository extends JpaRepository<Artist,Integer> {
     @Query(value = "select * from artist a where a.artist_name = :name",nativeQuery = true)
     Artist findArtistByName(@Param("name") String name);
+
 }

@@ -5,41 +5,46 @@
             <div class="search-input input-group col-md-4 float-left">
                 <input class="form-control border-right-0 border" type="search" placeholder="Search..." id="searchTable" ng-model="vm.searchInput">
                 <span class="input-group-append">
-                  <button class="btn btn-outline-secondary border-left-0 border" type="button" ng-click="vm.searchSongs(vm.searchInput)">
+                  <button class="btn btn-outline-secondary border-left-0 border" type="button" ng-click="vm.searchSongs()">
                         <i class="fa fa-search"></i>
                   </button>
                 </span>
             </div>
-            
+
             <button type="button" class="btn btn-danger float-right ml-2" ng-click="vm.deleteSong()" ng-disabled="vm.checkAnyDelete()">Delete Song</button>
             <button type="button" class="btn btn-primary float-right ml-2" ng-click="vm.addNewSong()" data-toggle="modal" data-target="#ModalSong">Add New Song</button>
-            <button type="button" class="btn btn-info float-right ml-2" ng-click="vm.orderSongs(vm.currentOrder)">Order</button>
         </div>
-
-        <table class='table table-bordered table-condensed table-striped table-hover mt-5'>
-            <thead class="thead-dark">
-                <tr>
-                    <th class="tdCoverCheckBox"><input id="checkBoxDeleteAll" type="checkbox" ng-model="vm.isCheckAll" ng-click="vm.onDeleteAll()" ng-hide="vm.checkValidSongList()"> </th>
-                    <th>STT</th>
-                    <th>Song Title</th>
-                    <th>Artist Name</th>
-                    <th>Genre</th>
-                    <th>Release Date</th>
-                    <th>Playtime</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="song in vm.songs" class="table-row">
-                    <td class="tdCoverCheckBox"><input class="checkBoxDeleteData" type="checkbox" ng-bind="song.status == 'DELETE'" ng-click="vm.changeSongStatus(song)"> </td>
-                    <th ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{vm.songs.indexOf(song) + 1}} </th>
-                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songTitle}} </td>
-                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songArtistName}} </td>
-                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songGenreName}} </td>
-                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songReleaseDate | date:'yyyy-MM-dd'}} </td>
-                    <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songPlayTime}} </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-field">
+            <table class='table table-bordered table-condensed table-striped table-hover mt-5'>
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="tdCoverCheckBox"><input id="checkBoxDeleteAll" type="checkbox" ng-model="vm.isCheckAll" ng-click="vm.onDeleteAll()" ng-hide="vm.checkValidSongList()"> </th>
+                        <th>STT</th>
+                        <th class="clickable" ng-click="vm.orderSongs('Song Title')">Song Title</th>
+                        <th>Artist Name</th>
+                        <th>Genre</th>
+                        <th class="clickable" ng-click="vm.orderSongs('Release Date')">Release Date</th>
+                        <th class="clickable" ng-click="vm.orderSongs('Playtime')">Playtime</th>
+                        <th>Likes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="song in vm.songs" class="table-row">
+                        <td class="tdCoverCheckBox"><input class="checkBoxDeleteData" type="checkbox" ng-bind="song.status == 'DELETE'" ng-click="vm.changeSongStatus(song)"> </td>
+                        <th ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{vm.songs.indexOf(song) + 1 + (vm.query.offset - 1)*10}} </th>
+                        <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songTitle}} </td>
+                        <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songArtistName}} </td>
+                        <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songGenreName}} </td>
+                        <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songReleaseDate | date:'yyyy-MM-dd'}} </td>
+                        <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.songPlayTime}} </td>
+                        <td ng-click="vm.clickTable(song)" data-toggle="modal" data-target="#ModalSong"> {{song.data.listenerLiked.length}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-hide="vm.checkValidSongList()">
+            <pagination total-item="vm.totalItem" max-size="vm.maxSize" item-per-page="vm.query.pageSize" ng-model="vm.query.offset"></pagination>
+        </div>
     </div>
     <div class="modal fade" id="ModalSong" tabindex="-1" role="dialog" aria-labelledby="ModalSong" aria-hidden="true">
         <div class="modal-dialog" role="document">

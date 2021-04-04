@@ -1,0 +1,71 @@
+<div id="root">
+    <div class="user-layout">
+        <aside id="user-side-menu">
+            <div class="user-brand">
+                <button class="user-btn button">
+                    <div class="user-logo"></div>
+                </button>
+            </div>
+            <nav class="user-navbar-main">
+                <ul>
+                    <li class="user-navbar-item">
+                        <a href="#!">
+                            <i class="icon fas fa-user-alt"></i>
+                            <span>Cá Nhân</span></a>
+                    </li>
+                    <li class="user-navbar-item">
+                        <a href="#!explore">
+                            <i class="icon fab fa-angular"></i>
+                            <span>Khám Phá</span>
+                        </a>
+                    </li>
+                    <li class="user-navbar-item">
+                        <a href="#!">
+                            <i class="icon fab fa-angular"></i>
+                            <span>Bảng Xếp Hạng</span>
+                        </a>
+                    </li>
+                    <li class="user-navbar-item">
+                        <a href="#!">
+                            <i class="icon fab fa-angular"></i>
+                            <span>Nhạc</span>
+                        </a>
+                    </li>
+                    <li class="user-navbar-item">
+                        <a href="#!">
+                            <i class="icon fab fa-angular"></i>
+                            <span>Thể Loại</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <div id="user-mainpage">
+            <header id="header">
+                <div class="level">
+                    <div class="level-left">
+                        <form class="search">
+                            <div class="input-group">
+                                <span class="input-group-prepend">
+                                        <button class="btn bg-white border-left-0 border user-search-btn" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                <input class="form-control border-end-0 border user-search-input" type="text" placeholder="Nhập tên bài hát...">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="level-right">
+                        <div class="login-container">
+                            <button class="button user-login-btn">
+                                <img src="../../resource/avatar-icon.png" alt="avatar" class="rounded-circle">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div id="content">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>

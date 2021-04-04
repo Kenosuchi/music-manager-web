@@ -1,5 +1,6 @@
 package com.springboot.restful.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,12 +27,14 @@ public class Song {
     @Column(name="song_playtime")
     private int songPlayTime;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "song_artist")
+    @JsonIgnore
     private Artist songArtist;
 
     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn(name = "song_genre")
+    @JsonIgnore
     private Genre songGenre;
 
     @ManyToMany(cascade = CascadeType.DETACH)
@@ -39,6 +42,18 @@ public class Song {
     joinColumns = @JoinColumn(name = "song_id"),
     inverseJoinColumns = @JoinColumn(name="album_id"))
     private Set<Album> albumSet;
+
+    @ManyToMany(cascade = CascadeType.DETACH)
+    @JoinTable(name = "playlist_song",
+            joinColumns = @JoinColumn(name = "song_id"),
+            inverseJoinColumns = @JoinColumn(name = "playlist_id"))
+    private Set<Playlist> playlists;
+
+    @ManyToMany(cascade = CascadeType.DETACH)
+    @JoinTable(name = "song_like",
+            joinColumns = @JoinColumn(name = "song_id"),
+            inverseJoinColumns = @JoinColumn(name = "listener_like_id"))
+    private Set<Listener> likedListeners;
 
     public Song() {
     }

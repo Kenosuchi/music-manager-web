@@ -1,6 +1,6 @@
 angular
-    .module("ListenerModule")
-    .service("ListenerService", ListenerService);
+    .module('ListenerModule')
+    .factory('ListenerService', ListenerService)
 
 function ListenerService($http) {
     var API = {
@@ -19,6 +19,7 @@ function ListenerService($http) {
     }
 
     function getPlaylists(listenerId) {
+
         return $http.get(API.PlaylistUrl + "listener/" + listenerId);
     }
 

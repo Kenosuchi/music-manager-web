@@ -1,4 +1,4 @@
-<div>
+<div ng-hide="!vm.isAuthenticate">
     <div ng-hide="!vm.show.listener">
         <listener-general-directive></listener-general-directive>
     </div>
@@ -8,4 +8,7 @@
     <div ng-hide="!vm.show.song">
         <playlist-song-directive></playlist-song-directive>
     </div>
+</div>
+<div ng-hide="vm.isAuthenticate">
+    <listener-error-directive></listener-error-directive>
 </div>

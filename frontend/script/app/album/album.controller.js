@@ -3,7 +3,7 @@ angular
     .controller('AlbumController', AlbumController);
 
 function AlbumController(AlbumService) {
-    vm = this;
+    var vm = this;
     vm.albums = getAlbums();
     vm.selectedAlbumSongs = [];
     vm.showSongs = false;

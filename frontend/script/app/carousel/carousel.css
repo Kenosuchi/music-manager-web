@@ -1,0 +1,27 @@
+h3.title {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.btn-carousel-prev,
+.btn-carousel-next {
+    position: absolute;
+    top: -30px;
+    background: white;
+}
+
+.btn-carousel-prev {
+    right: 45px;
+}
+
+.btn-carousel-next {
+    right: 0px;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    margin-top: 30px;
+}

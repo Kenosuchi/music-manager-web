@@ -1,0 +1,39 @@
+<div class="container">
+    <h3 class="title"> {{vm.carouselTraits.Title}} </h3>
+    <div ng-attr-id="{{'music-carousel-'+vm.index}}" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-md-3" ng-repeat="item in vm.carouselTraits.Items[0]">
+                        <div class="card">
+                            <img class="card-img-top md-3" ng-src="{{item.Source}}" alt="Card image cap">
+                            <a href="!#"> {{item.Name}} </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-md-3" ng-repeat="item in vm.carouselTraits.Items[1]">
+                        <div class="card">
+                            <img class="card-img-top md-3" ng-src="{{item.Source}}" alt="Card image cap">
+                            <a href="!#"> {{item.Name}} </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-md-3" ng-repeat="item in vm.carouselTraits.Items[2]">
+                        <div class="card">
+                            <img class="card-img-top md-3" ng-src="{{item.Source}}" alt="Card image cap">
+                            <a href="!#"> {{item.Name}} </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="btn-carousel-prev" ng-attr-data-target="{{'#music-carousel-'+vm.index}}" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+        <a class="btn-carousel-next" ng-attr-data-target="{{'#music-carousel-'+vm.index}}" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+    </div>
+</div>

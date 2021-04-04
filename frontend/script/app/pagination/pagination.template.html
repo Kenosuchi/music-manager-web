@@ -1,0 +1,19 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" ng-click="vm.setPage(1)" ng-class="{disabled:vm.currentPage === 1,clickable:vm.currentPage !== 1}">
+            <a class="page-link">First</a>
+        </li>
+        <li class="page-item" ng-click="vm.setPage(vm.currentPage - 1)" ng-class="{disabled:vm.currentPage === 1,clickable:vm.currentPage !== 1}">
+            <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item clickable" ng-repeat="page in vm.pageList" ng-click="vm.setPage(page)" ng-class="{active:vm.currentPage === page}">
+            <a class="page-link"> {{page}} </a>
+        </li>
+        <li class="page-item" ng-click="vm.setPage(vm.currentPage + 1)" ng-class="{disabled:vm.currentPage === vm.totalPages,clickable:vm.currentPage !== vm.totalPages}">
+            <a class="page-link">Next</a>
+        </li>
+        <li class="page-item" ng-click="vm.setPage(vm.totalPages)" ng-class="{disabled:vm.currentPage === vm.totalPages,clickable:vm.currentPage !== vm.totalPages}">
+            <a class="page-link">Last</a>
+        </li>
+    </ul>
+</nav>

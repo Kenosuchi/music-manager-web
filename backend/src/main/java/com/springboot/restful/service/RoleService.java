@@ -23,6 +23,13 @@ public class RoleService {
         return result;
     }
 
+    public ServiceResult findRoleByName(String name){
+        ServiceResult result = new ServiceResult();
+        Role role = roleRepository.findRoleByName(name);
+        result.setData(role);
+        return result;
+    }
+
     public ServiceResult  create(Role role){
         ServiceResult result = new ServiceResult();
         result.setData(roleRepository.save(role));

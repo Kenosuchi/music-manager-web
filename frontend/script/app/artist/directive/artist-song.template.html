@@ -13,10 +13,10 @@
         <tbody>
             <tr ng-repeat="song in vm.songs">
                 <th scope="row">{{vm.songs.indexOf(song) + 1}}</th>
-                <td> {{song.data.songTitle}} </td>
-                <td> {{song.data.songGenreName}} </td>
-                <td> {{song.data.songPlayTime}} </td>
-                <td> {{song.data.songReleaseDate | date:'yyyy-MM-dd'}} </td>
+                <td> {{song.songTitle}} </td>
+                <td> {{song.songGenreName}} </td>
+                <td> {{song.songPlayTime}} </td>
+                <td> {{song.songReleaseDate | date:'yyyy-MM-dd'}} </td>
             </tr>
         </tbody>
     </table>

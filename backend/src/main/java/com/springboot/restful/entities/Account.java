@@ -2,8 +2,12 @@ package com.springboot.restful.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,5 +37,11 @@ public class Account {
         this.accountUsername = accountUsername;
         this.accountPassword = accountPassword;
         this.accountRole = accountRole;
+    }
+
+    public List<GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority(accountRole.getRoleName()));
+        return authorities;
     }
 }

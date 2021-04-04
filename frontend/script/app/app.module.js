@@ -2,11 +2,8 @@
     'use strict';
 
     angular
-        .module('MusicManagerApp', [
-            "ngRoute",
-            "SongModule",
-            "ArtistModule",
-            "AlbumModule",
-            "ListenerModule",
+        .module('MusicManagementApp', [
+            "MusicManagerApp",
+            "MusicUserApp"
         ]);
 })();

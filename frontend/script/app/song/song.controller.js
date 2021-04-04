@@ -2,14 +2,30 @@ angular
     .module('SongModule')
     .controller('SongController', SongController);
 
-function SongController(SongService) {
-    vm = this;
-    vm.songs = getSongs();
-    vm.songData = defaultSongDataValues();
+function SongController(SongService, $scope) {
+    var vm = this;
+    vm.songs;
+    vm.songData = {
+        songId: "",
+        songTitle: "",
+        songArtistName: "",
+        songGenreName: "",
+        songReleaseDate: new Date(),
+        songPlayTime: 0
+    }
     vm.dataMode = onDataMode("");
     vm.isCheckAll = false;
     vm.searchInput = "";
-    vm.currentOrder=true;
+    vm.maxSize = 5;
+    vm.totalItem = 0;
+    vm.query = {
+        offset: 1, //current page
+        pageSize: 10, //item per page
+        sortOrder: "asc", //sort order
+        orderBy: "songPlayTime", // column order
+        searchValue: "", // search input
+        searchType: ""
+    }
 
     vm.submitSong = submitSong;
     vm.clickTable = clickTable;
@@ -22,28 +38,26 @@ function SongController(SongService) {
     vm.searchSongs = searchSongs;
     vm.orderSongs = orderSongs;
 
-    function orderSongs(currentOrder){
-        SongService.orderSongs(currentOrder).then(
-            function(result){
-                vm.songs = SongService.parseData(result);
-                vm.currentOrder = !vm.currentOrder;
-                SongService.success("Success reorder song data");
-            },function(error){
-                SongService.error("Fail to reoder song data");
-            }
-        )
+    $scope.$watch('vm.query.offset', function() {
+        vm.songs = [];
+        getSongs();
+    })
+
+    function orderSongs(tableName) {
+        if (!changeQueryOrderBy(tableName)) {
+            if (vm.query.sortOrder == "asc")
+                vm.query.sortOrder = "desc";
+            else if (vm.query.sortOrder == "desc")
+                vm.query.sortOrder = "asc";
+        } else {
+            vm.query.sortOrder = "desc";
+        }
+        getSongs();
     }
 
-    function searchSongs(title) {
-        SongService.getSongsByTitle(title).then(
-            function(res) {
-                vm.songs = SongService.parseData(res);
-                SongService.success("Success getting song data by title");
-            },
-            function(res) {
-                SongService.error("Fail to get song data by title");
-            }
-        )
+    function searchSongs() {
+        vm.query.searchValue = vm.searchInput;
+        getSongs();
     }
 
     function checkValidSongList() {
@@ -123,34 +137,28 @@ function SongController(SongService) {
     }
 
     function success() {
-        SongService.success(vm.dataMode == "insert" ? "Create Success" : "Update Success");
+        SongService.success(vm.dataMode == onDataMode("insert") ? "Create Success" : "Update Success");
         getSongs();
     }
 
     function error() {
-        SongService.error(vm.dataMode == "insert" ? "Create Success" : "Update Success");
+        SongService.error(vm.dataMode == onDataMode("insert") ? "Create Failed" : "Success Failed");
     }
 
     function getSongs() {
-        SongService.getSongs().then(
+        SongService.getSongs(vm.query).then(
             function(res) {
                 vm.songs = SongService.parseData(res);
+                var totalItem = res.data.data.size;
+                if (vm.totalItem !== totalItem) {
+                    vm.totalItem = totalItem;
+                    vm.query.offset = 1;
+                }
             },
             function(res) {
                 console.log("Cannot get songs")
             }
         )
-    }
-
-    function defaultSongDataValues() {
-        return {
-            songId: "",
-            songTitle: "",
-            songArtistName: "",
-            songGenreName: "",
-            songReleaseDate: new Date(),
-            songPlayTime: 0
-        }
     }
 
     function onDataMode(method) {
@@ -162,6 +170,24 @@ function SongController(SongService) {
             default:
                 return 0;
         }
+    }
+
+    function changeQueryOrderBy(tableName) {
+        var currentOrderBy = vm.query.orderBy;
+        switch (tableName) {
+            case "Playtime":
+                vm.query.orderBy = "songPlayTime";
+                break;
+            case "Release Date":
+                vm.query.orderBy = "songReleaseDate";
+                break;
+            case "Song Title":
+                vm.query.orderBy = "songTitle";
+                break;
+        }
+        if (currentOrderBy !== vm.query.orderBy)
+            return true;
+        return false;
     }
 
     $('#submitSongModalForm').click(function() {

@@ -9,26 +9,16 @@ function SongService($http) {
     }
     var service = {
         getSongs: getSongs,
-        getSongsByTitle: getSongsByTitle,
         parseData: parseData,
         addSong: addSong,
         updateSong: updateSong,
         deleteSong: deleteSong,
         deleteMultipleSong: deleteMultipleSong,
-        orderSongs: orderSongs,
         success: success,
         error: error
     }
 
     // ====================== INTERBAL==================
-
-    function orderSongs(currentOrder){
-        return $http.get(API.urls+"order/"+currentOrder);
-    }
-
-    function getSongsByTitle(title) {
-        return $http.get(API.urls + "title/" + title);
-    }
 
     function deleteMultipleSong(idArr) {
         return $http.put(API.urls + "delete-multiple", idArr);
@@ -39,19 +29,19 @@ function SongService($http) {
     }
 
     function updateSong(data) {
-        return $http.put(API.urls, data);
+        return $http.put(API.urls + "update/", data);
     }
 
-    function getSongs() {
-        return $http.get(API.urls);
+    function getSongs(query) {
+        return $http.put(API.urls, query);
     }
 
     function parseData(res) {
         var result = [];
-        for (data of res.data.data) {
+        for (data of res.data.data.dtos) {
             result.push({
                 status: "GET",
-                data: data
+                data: data,
             })
         };
         return result

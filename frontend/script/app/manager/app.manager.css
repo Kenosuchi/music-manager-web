@@ -1,0 +1,88 @@
+#brand {
+    line-height: 50px;
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #23282e;
+    color: #e1ffff;
+    text-decoration: none;
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+#brand:hover {
+    color: rgba(1, 1, 1, 0.5);
+}
+
+.btn-mm-acccount {
+    color: #ffe484;
+    border-color: #ffe484;
+    font-weight: 500;
+}
+
+.btn-mm-acccount:hover {
+    background-color: #ffe484;
+}
+
+#mm-content {
+    order: 1;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.nav-link {
+    color: #e1ffff;
+    font-weight: 500;
+}
+
+#nav-side-menu li a:hover {
+    color: #e1ffff;
+}
+
+.in-header {
+    justify-content: flex-end;
+    background-color: #2e353d;
+    padding: 15px 10px;
+}
+
+#account-icon {
+    margin-right: 15px;
+}
+
+#account-icon:hover {
+    cursor: pointer;
+}
+
+#nav-side-menu {
+    font-weight: 200;
+    background-color: #2e353d;
+    padding-left: 0px;
+    top: 0px;
+    order: 0;
+    height: 100vh;
+}
+
+#nav-side-menu ul,
+#nav-side-menu li {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    line-height: 35px;
+}
+
+#nav-side-menu li {
+    padding-left: 0px;
+    border-bottom: 2px solid #23282e;
+}
+
+#nav-side-menu li a:hover {
+    border-left: 3px solid #d19b3d;
+    background-color: #4f5b69;
+    transition: all 0.3s ease;
+}
+
+.nav-side-menu-selected {
+    border-left: 3px solid #d19b3d;
+    background-color: #4f5b69;
+}

@@ -1,0 +1,59 @@
+<div class="d-flex flex-row">
+    <div id="nav-side-menu" class="col-md-3 col-xl-2">
+        <a id="brand" href="#!" ng-click="vm.menuClick()">Music Manager</a>
+        <ul>
+            <li>
+                <a class="nav-link" ng-class="{'nav-side-menu-selected':vm.menuItemList.Song === 1}" href="#!song" ng-click="vm.menuClick('Song')">Song</a>
+            </li>
+            <li>
+                <a class="nav-link" ng-class="{'nav-side-menu-selected':vm.menuItemList.Listener === 1}" href="#!listener" ng-click="vm.menuClick('Listener')">Listener</a>
+            </li>
+            <li>
+                <a class="nav-link" ng-class="{'nav-side-menu-selected':vm.menuItemList.Album === 1}" href="#!album" ng-click="vm.menuClick('Album')">Album</a>
+            </li>
+            <li>
+                <a class="nav-link" ng-class="{'nav-side-menu-selected':vm.menuItemList.Artist === 1}" href="#!artist" ng-click="vm.menuClick('Artist')">Artist</a>
+            </li>
+        </ul>
+    </div>
+    <main id="mm-content" class="col-md-9 col-xl-10">
+        <div class="d-flex in-header">
+            <a class="btn btn-mm-acccount" data-toggle="modal" data-target="#ModalAccount" ng-hide="vm.userAlreadyLogin">Account</a>
+            <div class="btn-group">
+                <img id="account-icon" class="rounded-circle" src="../../resource/avatar-icon.png" alt="avatar" ng-hide="!vm.userAlreadyLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </img>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#!" ng-click="vm.logout(); vm.menuClick()">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div ng-view></div>
+    </main>
+</div>
+<div class="modal fade" id="ModalAccount" tabindex="-1" role="dialog" aria-labelledby="ModalAccount" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 style="color: black;" class="modal-title">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-center">
+                    <form ng-submit="vm.loginUser()">
+                        <div class="form-group">
+                            <label for="SongTitle">Username </label>
+                            <input type="text" class="form-control" id="SongTitle" placeholder="Enter Username ..." ng-model="vm.accountLogin.accountUsername">
+                        </div>
+                        <div class="form-group">
+                            <label for="ArtistName">Password </label>
+                            <input type="text" class="form-control" id="ArtistName" placeholder="Enter Password ..." ng-model="vm.accountLogin.accountPassword">
+                        </div>
+                        <button id="submitAccountModalForm" type="submit" class="btn btn-primary float-right">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

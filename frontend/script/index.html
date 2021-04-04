@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -7,13 +7,20 @@
     <title>Music Manager</title>
 
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="./node_modules/angular/angular.min.js"></script>
     <script src="./node_modules/angular-route/angular-route.min.js"></script>
+    <script src="./node_modules/angular-cookies/angular-cookies.min.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
-    <script src="./app/app.module.js"></script>
-    <script src="./app/app.controller.js"></script>
-    <script src="./app/app.route.js"></script>
+    <script src="./app/pagination/pagination.module.js"></script>
+    <script src="./app/pagination/pagination.controller.js"></script>
+    <script src="./app/pagination/pagination.directive.js"></script>
+
+    <script src="./app/carousel/carousel.module.js"></script>
+    <script src="./app/carousel/carousel.controller.js"></script>
+    <script src="./app/carousel/carousel.directive.js"></script>
 
     <script src="./app/song/song.module.js"></script>
     <script src="./app/song/song.controller.js"></script>
@@ -22,10 +29,12 @@
     <script src="./app/listener/listener.module.js"></script>
     <script src="./app/listener/listener.service.js"></script>
     <script src="./app/listener/listener.controller.js"></script>
+    <!-- <script src="./app/listener/listener.interceptor.js"></script>
+    <script src="./app/listener/listener.config.js"></script> -->
     <script src="./app/listener/directive/listener-general.directive.js"></script>
+    <script src="./app/listener/directive/listener-error.directive.js"></script>
     <script src="./app/listener/directive/playlist-general.directive.js"></script>
     <script src="./app/listener/directive/playlist-song.directive.js"></script>
-
 
     <script src="./app/artist/artist.module.js"></script>
     <script src="./app/artist/artist.service.js"></script>
@@ -39,50 +48,34 @@
     <script src="./app/album/directive/album-list.directive.js"></script>
     <script src="./app/album/directive/album-song.directive.js"></script>
 
+    <script src="./app/explore/explore.module.js"></script>
+    <script src="./app/explore/explore.service.js"></script>
+    <script src="./app/explore/explore.controller.js"></script>
+
+    <script src="./app/app.module.js"></script>
+
+    <script src="./app/manager/app.manager.module.js"></script>
+    <script src="./app/manager/app.manager.service.js"></script>
+    <script src="./app/manager/app.manager.route.js"></script>
+    <script src="./app/manager/app.manager.controller.js"></script>
+
+    <script src="./app/user/app.user.module.js"></script>
+    <script src="./app/user/app.user.route.js"></script>
+    <script src="./app/user/app.user.controller.js"></script>
+
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./app/manager/app.manager.css">
     <link rel="stylesheet" href="./app/song/song.css">
+    <link rel="stylesheet" href="./app/explore/explore.css">
+    <link rel="stylesheet" href="./app/user/app.user.css">
+    <link rel="stylesheet" href="./app/pagination/pagination.css">
+    <link rel="stylesheet" href="./app/carousel/carousel.css">
     <link rel="stylesheet" href="./app/listener/listener.css">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body ng-app="MusicManagerApp">
-    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row mm-navbar">
-        <a id="brand" class="navbar-brand" href="#!">Music Manager</a>
-        <div class="mm_search input-group col-md-4">
-            <input class="form-control border-right-0 border mm-search-input" type="search" placeholder="Search...">
-            <span class="input-group-append">
-              <button class="btn btn-outline-secondary border-left-0 border mm-search-btn" type="button">
-                    <i class="fa fa-search mm-search-btn-img"></i>
-              </button>
-            </span>
-        </div>
-        <a class="btn btn-mm-acccount d-done d-lg-inline-block mb-md-0">Account</a>
-    </header>
-    <div class="container-fluid">
-        <div class="row flex-xl-nowrap">
-            <div class="col-12 col-md-3 col-xl-2 mm-sidebar">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#!song">Song</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#!listener">Listener</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#!album">Album</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#!artist">Artist</a>
-                    </li>
-                </ul>
-            </div>
-
-            <main class="col-12 col-md-9 col-xl-10 py-md-3 mm-content">
-                <div ng-view></div>
-            </main>
-        </div>
-    </div>
+<body ng-app="MusicManagementApp">
+    <div ng-include="'./app/user/app.user.template.html'"></div>
 </body>
 
 </html>

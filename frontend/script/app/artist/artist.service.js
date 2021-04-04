@@ -4,12 +4,10 @@ angular
 
 function ArtistService($http) {
     var API = {
-        Url: '/artists/',
-        UrlSong: '/songs/'
+        Url: '/artists/'
     };
     var service = {
         getArtists: getArtists,
-        getSongs: getSongs,
         parseData: parseData,
     }
 
@@ -22,10 +20,6 @@ function ArtistService($http) {
             })
         };
         return result;
-    }
-
-    function getSongs(artistId) {
-        return $http.get(API.UrlSong + "artist/" + artistId)
     }
 
     function getArtists() {

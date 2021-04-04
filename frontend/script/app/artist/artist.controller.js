@@ -3,7 +3,7 @@ angular
     .controller('ArtistController', ArtistController);
 
 function ArtistController(ArtistService) {
-    vm = this;
+    var vm = this;
     vm.artists = getArtists();
     vm.songs = [];
     vm.show = {
@@ -15,17 +15,9 @@ function ArtistController(ArtistService) {
     vm.showArtist = showArtist;
     vm.getSongs = getSongs;
 
-    function getSongs(artistId) {
-        ArtistService.getSongs(artistId).then(
-            function(res) {
-                console.log("get artist song Success");
-                showSong();
-                vm.songs = ArtistService.parseData(res);
-            },
-            function(res) {
-                console.log("Cannot get artist songs");
-            }
-        )
+    function getSongs(artistIndex) {
+        vm.songs = vm.artists[artistIndex].data.artistSongs;
+        showSong();
     }
 
     function showSong() {

@@ -1,7 +1,9 @@
 package com.springboot.restful.service;
 
 import com.springboot.restful.dto.ArtistDTO;
+import com.springboot.restful.dto.SongDTO;
 import com.springboot.restful.entities.Artist;
+import com.springboot.restful.entities.Song;
 import com.springboot.restful.repository.AccountRepository;
 import com.springboot.restful.repository.ArtistRepository;
 import com.springboot.restful.utilities.ConvertDaoAndDto;
@@ -84,8 +86,18 @@ public class ArtistService implements ConvertDaoAndDto<Artist, ArtistDTO> {
     public List<ArtistDTO> convertEntitiesToDTOs(List<Artist> entity) {
         List<ArtistDTO> result = new ArrayList<>();
         for(Artist artist :entity){
-            result.add(new ArtistDTO(artist));
+            ArtistDTO artistDTO = new ArtistDTO(artist);
+            artistDTO.setArtistSongs(convertSongEntitiesToSongDTOs(artist));
+            result.add(artistDTO);
         }
         return result;
+    }
+
+    private List<SongDTO> convertSongEntitiesToSongDTOs(Artist artist){
+        List<SongDTO> songDTOS = new ArrayList<>();
+        for(Song song:artist.getArtistSongs()){
+            songDTOS.add(new SongDTO(song));
+        }
+        return songDTOS;
     }
 }

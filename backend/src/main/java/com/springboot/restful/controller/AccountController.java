@@ -1,5 +1,6 @@
 package com.springboot.restful.controller;
 
+import com.springboot.restful.dto.AccountDTO;
 import com.springboot.restful.entities.Account;
 import com.springboot.restful.service.AccountService;
 import com.springboot.restful.utilities.ServiceResult;
@@ -25,13 +26,13 @@ public class AccountController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ServiceResult> create(@RequestBody Account account) {
-        return new ResponseEntity<ServiceResult>(accountService.create(account), HttpStatus.OK);
+    public ResponseEntity<ServiceResult> create(@RequestBody AccountDTO accountDTO) {
+        return new ResponseEntity<ServiceResult>(accountService.create(accountDTO), HttpStatus.OK);
     }
 
     @PutMapping("/")
-    public ResponseEntity<ServiceResult> update(@RequestBody Account account) {
-        return new ResponseEntity<ServiceResult>(accountService.update(account), HttpStatus.OK);
+    public ResponseEntity<ServiceResult> update(@RequestBody AccountDTO accountDTO) {
+        return new ResponseEntity<ServiceResult>(accountService.update(accountDTO), HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<ServiceResult> delete(@PathVariable int id) {

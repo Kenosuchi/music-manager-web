@@ -1,6 +1,7 @@
 package com.springboot.restful.controller;
 
 import com.springboot.restful.dto.SongDTO;
+import com.springboot.restful.utilities.Query;
 import com.springboot.restful.utilities.ServiceResult;
 import com.springboot.restful.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,37 +16,21 @@ public class SongController {
     @Autowired
     private SongService songService;
 
-    @GetMapping("/")
-    public ResponseEntity<ServiceResult> findAllSong() {
-        return new ResponseEntity<ServiceResult>(songService.findAll(), HttpStatus.OK);
+    @PutMapping("/")
+    public ResponseEntity<ServiceResult> findAllSong(@RequestBody Query query) {
+        return new ResponseEntity<ServiceResult>(songService.findAll(query), HttpStatus.OK);
     }
 
     @GetMapping("/id/{id}")
     public ResponseEntity<ServiceResult> findById(@PathVariable int id) {
         return new ResponseEntity<ServiceResult>(songService.findById(id), HttpStatus.OK);
     }
-
-    @GetMapping("/title/{title}")
-    public ResponseEntity<ServiceResult> findByTitle(@PathVariable(value = "title") String title) {
-        return new ResponseEntity<ServiceResult>(songService.findSongByTitle(title), HttpStatus.OK);
-    }
-
-    @GetMapping("/artist/{id}")
-    public ResponseEntity<ServiceResult> findByArtist(@PathVariable(value = "id") int artistId) {
-        return new ResponseEntity<ServiceResult>(songService.findSongByArtist(artistId), HttpStatus.OK);
-    }
-
-    @GetMapping("/order/{orderBy}")
-    public ResponseEntity<ServiceResult> orderBySongTitle(@PathVariable(value = "orderBy") boolean order) {
-        return new ResponseEntity<ServiceResult>(songService.orderBySongTitle(order), HttpStatus.OK);
-    }
-
     @PostMapping("/")
     public ResponseEntity<ServiceResult> create(@RequestBody SongDTO songDTO) {
         return new ResponseEntity<ServiceResult>(songService.create(songDTO), HttpStatus.OK);
     }
 
-    @PutMapping("/")
+    @PutMapping("/update/")
     public ResponseEntity<ServiceResult> update(@RequestBody SongDTO songDTO) {
         return new ResponseEntity<ServiceResult>(songService.update(songDTO), HttpStatus.OK);
     }

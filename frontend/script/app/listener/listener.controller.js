@@ -3,10 +3,12 @@ angular
     .controller("ListenerController", ListenerController);
 
 function ListenerController(ListenerService) {
-    vm = this;
+    var vm = this;
     vm.listeners = getListeners();
     vm.playlists = [];
     vm.songs = [];
+    vm.token = "";
+    vm.isAuthenticate = true;
 
     vm.show = {
         listener: true,
@@ -76,7 +78,12 @@ function ListenerController(ListenerService) {
     }
 
     function success(res) {
+        if (res.data.status != "SUCCESS") {
+            console.log("Cannot get data");
+            return;
+        }
         console.log("get listener success");
+        vm.isAuthenticate = true;
         vm.listeners = ListenerService.parseData(res);
         vm.show = {
             listener: true,
@@ -86,6 +93,9 @@ function ListenerController(ListenerService) {
     }
 
     function error(res) {
-        console.log("Error: cannot get listener");
+        if (res.status === 403 || res.status === 401)
+            vm.isAuthenticate = false;
+        else
+            console.log("Error: cannot get listener");
     }
 }
